@@ -1,4 +1,5 @@
-# modernswdev-Team1-TempName
+# Project Encore
+## modernswdev-Team1
 
 ## Team Members
 
