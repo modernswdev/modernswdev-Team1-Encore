@@ -19,6 +19,18 @@ In today's world, there is so much media that is coming out that seem exciting o
 
 - **User Reviews and Ratings**  
   Users can mark media as watched, submit their own ratings, and add optional comments.
+### User Personas
+
+1. **The Casual Viewer**  
+   A regular user who watches movies and TV shows for entertainment and wants quick, reliable information before deciding what to watch.
+
+2. **The Active Watcher**  
+   A more engaged user who frequently watches content and enjoys sharing opinions and ratings.
+
+3. **The Admin**  
+   A system manager responsible for maintaining platform integrity and quality.
+
+
 
 ## Team Members
 
