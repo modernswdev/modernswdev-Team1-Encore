@@ -387,4 +387,102 @@
 
 			})();
 
+		// Search UI: connect search bar to backend /api/search, show results + loading/empty states
+			(function() {
+				var $searchInput = $('.movie-search-input');
+				var $searchIcon = $('.movie-search-icon');
+				var $searchSection = $('#searchSection');
+				var $searchStatus = $('#searchStatus');
+				var $searchResults = $('#searchResults');
+				var $homeItems = $('#homeItems');
+
+				var setStatus = function(html) {
+					$searchStatus.html(html);
+				};
+
+				var showLoading = function() {
+					setStatus('<span class="spinner"></span><span class="search-message" style="margin-left: 0.75rem;">Loading…</span>');
+				};
+
+				var showMessage = function(message) {
+					setStatus('<span class="search-message">' + message + '</span>');
+				};
+
+				var setView = function(showSearch) {
+					if (showSearch) {
+						$homeItems.hide();
+						$searchSection.show();
+					} else {
+						$searchSection.hide();
+						$homeItems.show();
+					}
+				};
+
+				var buildResultItem = function(movie) {
+					var posterUrl = movie.poster || 'https://via.placeholder.com/500x750?text=No+Image';
+					var title = movie.title || 'Untitled';
+
+					return '\n\t\t<article class="item thumb span-1">' +
+						'<h2>' + title + '</h2>' +
+						'<a href="details.html" class="poster-link"><img src="' + posterUrl + '" alt="' + title + '"></a>' +
+					'</article>';
+				};
+
+				var renderResults = function(results) {
+					$searchResults.empty();
+					results.forEach(function(movie) {
+						$searchResults.append(buildResultItem(movie));
+					});
+				};
+
+				var performSearch = function(query) {
+					if (!query || !query.trim()) {
+						setView(false);
+						return;
+					}
+
+					setView(true);
+					showLoading();
+					$searchResults.empty();
+
+					var apiUrl = '/api/search?q=' + encodeURIComponent(query);
+
+					fetch(apiUrl, { method: 'GET' })
+						.then(function(res) {
+							if (!res.ok) throw new Error('Network response was not ok');
+							return res.json();
+						})
+						.then(function(data) {
+							if (!Array.isArray(data)) {
+								throw new Error('Unexpected response');
+							}
+
+							if (data.length === 0) {
+								showMessage('No results found for "' + query + '". Try another term.');
+								return;
+							}
+
+							showMessage('Showing ' + data.length + ' results for "' + query + '".');
+							renderResults(data);
+						})
+						.catch(function(err) {
+							console.error('Search error', err);
+							showMessage('Something went wrong while searching. Please try again.');
+						});
+				};
+
+				var handleSearch = function() {
+					performSearch($searchInput.val());
+				};
+
+				$searchIcon.on('click', handleSearch);
+				$searchInput.on('keypress', function(event) {
+					if (event.which === 13) {
+						event.preventDefault();
+						handleSearch();
+					}
+				});
+
+			})();
+
 })(jQuery);

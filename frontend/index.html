@@ -122,6 +122,35 @@
         transform: scale(1.2);
         color: #fff;
     }
+
+    /* Search results status (loading / empty / error) */
+    .search-status {
+        padding: 1.5rem 2rem;
+        text-align: center;
+        color: #ddd;
+        font-size: 1rem;
+    }
+
+    .search-message {
+        margin-top: 0.5rem;
+    }
+
+    .spinner {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        border: 3px solid rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        border-top-color: rgba(255, 255, 255, 0.9);
+        animation: spin 0.75s linear infinite;
+        vertical-align: middle;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
 </style>
 	</head>
 	<body class="is-preload">
@@ -160,11 +189,16 @@
 				<!-- Main -->
 					<section id="main">
 
-						<!-- Items -->
-							<div class="items">
+							<!-- Search Results -->
+							<div id="searchSection" style="display: none;">
+								<div id="searchStatus" class="search-status"></div>
+								<div id="searchResults" class="items"></div>
+							</div>
 
-								
-
+							<!-- Home Content (default) -->
+							<div id="homeItems">
+								<!-- Items -->
+									<div class="items">
 								<article class="item thumb span-1">
 									<h2>The Godfather</h2>
 									<a href="details.html" class="poster-link"><img src="images/thumbs/01.png" alt=""></a>
