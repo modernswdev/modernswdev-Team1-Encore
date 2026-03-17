@@ -1,0 +1,14 @@
+{
+  "name": "modernswdev-team1-encore",
+  "version": "1.0.0",
+  "description": "Encore movie rating app",
+  "main": "sort.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^30.3.0"
+  }
+}
