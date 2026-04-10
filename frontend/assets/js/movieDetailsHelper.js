@@ -11,4 +11,7 @@ function formatMovieDetails(movie) {
   };
 }
 
-module.exports = formatMovieDetails;
+// allow Jest (Node) to import it
+if (typeof module !== "undefined") {
+  module.exports = formatMovieDetails;
+}
