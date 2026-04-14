@@ -16,10 +16,11 @@ async function loadMovieDetails() {
   }
 
   try {
-    const url = `https://shiny-garbanzo-jj59xqp769qp2wrr-3001.app.github.dev/api/search?q=${encodeURIComponent(title)}`;
+    const url = `http://127.0.0.1:3001/api/search?q=${encodeURIComponent(title)}`;
     console.log("fetching:", url);
 
-    const response = await fetch(`https://shiny-garbanzo-jj59xqp769qp2wrr-3001.app.github.dev/api/search?q=${encodeURIComponent(title)}`);
+    const response = await fetch(url);
+
     console.log("response received:", response);
     console.log("response status:", response.status);
 
