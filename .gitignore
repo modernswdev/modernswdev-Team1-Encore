@@ -205,4 +205,7 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
 node_modules/
+backend/node_modules/
+.env

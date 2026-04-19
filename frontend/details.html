@@ -126,24 +126,41 @@
         </header>
 
         <section id="media-details" style="padding: 10rem 2rem 4rem 2rem; background: #1a1a1a; color: #fff; min-height: 100vh;">
-            <div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 3rem; align-items: start; flex-wrap: wrap;">
-                <div style="min-width: 300px; height: 450px; background: #222; border: 2px dashed #444; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
-                    <span style="color: #666; font-size: 1.2rem;">Movie Poster Placeholder</span>
-                </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <h2 style="font-size: 3rem; margin: 0; color: #fff;">Media Details Placeholder</h2>
-                    <p style="font-size: 1.5rem; color: #e50914; font-weight: bold; margin: 10px 0;">Encore Score: 85% | Critics: 82%</p>
-                    <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0;">
-                        <h3>Synopsis</h3>
-                        <p style="color: #ccc; line-height: 1.6;">This is a placeholder for the movie's description. Once the backend is connected, clicking a specific poster on the home page will load this page and populate this area with the correct title, rating, and cast information from our database.</p>
-                    </div>
-                    <ul class="actions">
-                        <li><a href="#" class="button primary">Submit a Rating</a></li>
-                        <li><a href="index.html" class="button">Back to Gallery</a></li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 3rem; align-items: start; flex-wrap: wrap;">
+    
+    <div style="min-width: 300px; max-width: 300px;">
+      <img
+        id="moviePoster"
+        src="images/thumbs/01.png"
+        alt="Movie Poster"
+        style="width: 100%; height: auto; border-radius: 8px; background: #222;"
+      />
+    </div>
+
+    <div style="flex: 1; min-width: 300px;">
+      <h2 id="movieTitle" style="font-size: 3rem; margin: 0; color: #fff;">Loading...</h2>
+
+      <p id="movieScore" style="font-size: 1.5rem; color: #e50914; font-weight: bold; margin: 10px 0;">
+        Score loading...
+      </p>
+
+      <div style="background: #252525; padding: 20px; border-radius: 8px; margin: 20px 0;">
+        <h3>Synopsis</h3>
+        <p id="movieSynopsis" style="color: #ccc; line-height: 1.6;">
+          Loading synopsis...
+        </p>
+      </div>
+
+      <p id="movieReleaseDate" style="color: #bbb; margin-top: 1rem;"></p>
+
+      <ul class="actions">
+        <li><a href="#" class="button primary">Submit a Rating</a></li>
+        <li><a href="index.html" class="button">Back to Gallery</a></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
 
         <section id="credits" style="position: fixed; bottom: 0; left: 0; width: 100%; background: #222; z-index: 10000; text-align: center; border-top: 2px solid #e50914; padding: 10px 0;">
             <h4 style="margin: 0; font-size: 0.9em; color: #fff;">TEAM 1 PRODUCTION</h4>
@@ -156,11 +173,13 @@
         </section>
 
         <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.poptrox.min.js"></script>
+   <!--     <script src="assets/js/jquery.poptrox.min.js"></script>-->
         <script src="assets/js/browser.min.js"></script>
         <script src="assets/js/breakpoints.min.js"></script>
         <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+        <!-- <script src="assets/js/main.js"></script> -->
+        <script src="assets/js/movieDetailsHelper.js"></script>
+        <script src="assets/js/details.js"></script>
 
     </body>
 </html>

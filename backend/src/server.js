@@ -7,15 +7,16 @@ const { connect } = require("mongoose");
 const TMDB_API_KEY = process.env.TMDB_API_KEY;
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Encore API is running");
+app.use((req, res, next) => {
+  console.log("incoming request:", req.method, req.url);
+  next();
 });
-
 app.get("/api/search", async (req, res) => {
   const query = req.query.q;
+  console.log("search route hit with query:", query);
 
   if (!query) {
     return res.status(400).json({ error: "Missing search query" });
@@ -23,11 +24,15 @@ app.get("/api/search", async (req, res) => {
 
   try {
     const url = `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}`;
+    console.log("calling TMDB:", url);
 
     const response = await fetch(url);
-    const data = await response.json();
+    console.log("TMDB response status:", response.status);
 
-  const formattedResults = (data.results || []).map((movie) => ({
+    const data = await response.json();
+    console.log("TMDB data received");
+
+    const formattedResults = (data.results || []).map((movie) => ({
       id: movie.id,
       title: movie.title,
       release_date: movie.release_date,
@@ -38,6 +43,7 @@ app.get("/api/search", async (req, res) => {
         : null
     }));
 
+    console.log("sending results:", formattedResults.length);
     res.json(formattedResults);
 
   } catch (error) {
@@ -48,7 +54,13 @@ app.get("/api/search", async (req, res) => {
 
 const PORT = process.env.PORT || 3001;
 
-connectDB()
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+connectDB()
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err.message));app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
